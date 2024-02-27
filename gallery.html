@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header>
+      
+        <h1>the bark</h1>
+        <nav>
+            <div class="hamburger">☰</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="article.html">Article</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    
+    <div id="gallery">
+            <img src="images/baggy puppies.jpg" alt="Photo Description" id="current-image"></div>
+    </div>
+    <div class="gallery-controls">
+        <button id="prev">Previous</button>
+        <button id="next">Next</button>
+    </div>
+
+    <!--Navigation Controls Here-->
+    <script>
+        const photo = document.getElementById('gallery');
+        const prev = document.getElementById('prev');
+        const next = document.getElementById('next');
+
+        const images = ["images/baggy puppies.jpg", "images/set of standing puppies.jpg","images/single standing puppy.jpg"];
+        let currentIndex = 0;
+
+        prev.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1 + images.length) % images.length;
+            updateImage();
+        })
+
+
+        next.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1 ) % images.length;
+            updateImage();
+        })
+
+        function updateImage(){
+            const img = gallery.querySelector('#current-image');
+            img.classList.add('fade-out');
+            setTimeout(() => {
+                img.src = images[currentIndex];
+                img.alt = images[currentIndex];
+                img.classList.remove ('fade-out');
+            }, 500);
+        }
+    
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('activate');
+        });
+    </script>   
+
+</body>
+</html>
